@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import styles from '../styles/Home.module.css'
 import { getListApi } from './api/CallApis'
 
-export default function GetListest() {
+export function GetListest() {
 
   const [getList, setGetList] = useState([]);
   
