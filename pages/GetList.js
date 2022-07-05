@@ -2,21 +2,20 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import styles from '../styles/Home.module.css'
-import { getListApi } from './api/CallApis'
+import { getListApi, PostList } from './api/CallApis'
 
-export default function GetListest() {
+export  const  GetListest = () => {
 
   const [getList, setGetList] = useState([]);
   
-    const getNewMssage = async()=>{
-
+    const getNewMssage = async () => {
         const newMessage =  await getListApi();
-        console.log(newMessage);
-        setGetList(newMessage.data);     
+        setGetList([...newMessage?.data]);   
     }
+    
 
     useEffect(()=>{
-        getNewMssage();
+        getNewMssage()
     },[]);    
 
   return (
@@ -32,13 +31,12 @@ export default function GetListest() {
           Welcome to <a href="https://nextjs.org">GeList Test</a>
         </h1>
         <div>
-
-          {getList.map((list) => (
-            <div key={list.Id} >{list.Nombre}</div>
+          {getList?.map((list) => (
+            <div key={list?.Nombre} >{list?.Nombre}</div>
           ))}
 
         </div>
-
+        
       </main>
 
       <footer className={styles.footer}>

@@ -22,6 +22,12 @@ export const getMessageTest = async()=>{
 
 }
 
+export const getPinturas = async()=>{
+
+    return await axios.post(urlGetList)
+
+}
+
 //GetList Call 
 
 export const getListApi = async () => {
@@ -29,13 +35,11 @@ export const getListApi = async () => {
     return await axios.get(urlGetList,{
 
         auth:{
-
             username: 'Comex',
             password: 'Comex2017'
-
         },
 
-    })
+    }).catch(error => console.log(error.message))
 }
 
 // Post Test
