@@ -3,9 +3,11 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import styles from '../styles/Home.module.css'
 import { getListApi, PostList } from './api/CallApis'
+import Post from './Post'
 
-export  const  GetListest = () => {
+export   function GetList() {
 
+  
   const [getList, setGetList] = useState([]);
   
     const getNewMssage = async () => {
@@ -15,8 +17,8 @@ export  const  GetListest = () => {
     
 
     useEffect(()=>{
-        getNewMssage()
-    },[]);    
+        getNewMssage();
+    },[getList]);    
 
   return (
     <div className={styles.container}>
@@ -27,20 +29,21 @@ export  const  GetListest = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">GeList Test</a>
+      <h1 className={styles.title}>
+          Welcome to <a href="https://nextjs.org">Get Test</a>
         </h1>
-        <div>
           {getList?.map((list) => (
             <div key={list?.Nombre} >{list?.Nombre}</div>
           ))}
-
-        </div>
+      
+      {/* {data?.map((list) => (
+            <div key={list?.Nombre}> {list?.Nombre}</div>
+          ))} */}
+        
         
       </main>
 
       <footer className={styles.footer}>
-        <h1>Pruebas Post</h1>
       </footer>
     </div>
   )

@@ -35,11 +35,11 @@ export const getListApi = async () => {
     return await axios.get(urlGetList,{
 
         auth:{
-            username: 'Comex',
+            // username: 'Comex',
             password: 'Comex2017'
         },
 
-    }).catch(error => console.log(error.message))
+    }).catch(error => alert(error.message))
 }
 
 // Post Test

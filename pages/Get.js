@@ -37,6 +37,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <h1>Pruebas Post</h1>
+        
       </footer>
     </div>
   )
