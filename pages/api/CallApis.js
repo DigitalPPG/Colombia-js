@@ -25,11 +25,13 @@ export const getListApi =  async() => {
             password: 'Comex2017'
         },
     });
-    
+
     const getLists = [];
     console.log('resp',resp);
     if (resp.status === 200) {
         getLists.push(...resp.data)
+    }else{
+        
     }
     return getLists;
 }
