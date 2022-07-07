@@ -6,9 +6,10 @@ import styles from '../styles/Home.module.css'
 import { GetList } from './GetList'
 import { getListApi, PostList } from './api/CallApis'
 import Link from 'next/link'
+import { Update } from './Update'
 
 
-export default function Post() {
+export default function PostListComp({getAll}) {
 
     const [data, setPost] = useState({
         Id:0,
@@ -16,36 +17,29 @@ export default function Post() {
       });
     
       const handleChange = (event) =>{
-    
         const value = event.target.value
         setPost({
           ...data,
               [event.target.name] : value
-    
         });
       }
     
       const handleSubmit = (event) => {
-    
         event.preventDefault();
-
         const userData = {
-            
-        Id:Number(data.Id),
-        Nombre: data.Nombre
+          Id:Number(data.Id),
+          Nombre: data.Nombre
         }
-
-        PostList(userData);
-
+        //Reload page when action is post
+        PostList(userData).then( async () => {
+          await getAll();
+        });
+        //Clean input
         setPost({
           Id:"",
           Nombre:""
         });
       }
-
-      useEffect(() => {
-       getListApi()
-      }, [])
       
   return (
     <div className={styles.container}>
@@ -89,9 +83,12 @@ export default function Post() {
               
 
             </form>
-            <GetList ></GetList>
+
+            {/* <GetList ></GetList> */}
+            {/* <Update></Update> */}
         </div>
       </main>
+      {/* <GetList ></GetList> */}
 
       <footer className={styles.footer}>
         {/* <h1>Pruebas Post</h1> */}
