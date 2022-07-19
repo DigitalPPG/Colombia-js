@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import styles from '../styles/Home.module.css'
 import { GetList } from './GetList'
-import { getListApi, PostList } from './api/CallApis'
+import { createInfo, getListApi, PostList } from './api/CallApis'
 import Link from 'next/link'
 import { Update } from './Update'
 
@@ -26,14 +26,18 @@ export default function PostListComp({getAll}) {
     
       const handleSubmit = (event) => {
         event.preventDefault();
-        const userData = {
+        const infoData = {
           Id:Number(data.Id),
           Nombre: data.Nombre
         }
-        //Reload page when action is post
-        PostList(userData).then( async () => {
+        // Reload page when action is post
+        // PostList(infoData).then( async () => {
+        //   await getAll();
+        // });
+
+        createInfo(infoData).then( async() => {
           await getAll();
-        });
+        })
         //Clean input
         setPost({
           Id:"",

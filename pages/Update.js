@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getListApi, UpdateList } from './api/CallApis';
+import { deleteList, getListApi, PostList, UpdateList } from './api/CallApis';
 import styles from '../styles/Home.module.css'
 import Head from 'next/head'
 import Link from 'next/link'

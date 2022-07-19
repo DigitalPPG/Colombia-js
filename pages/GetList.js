@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useState, useEffect, useCallback } from 'react'
 import styles from '../styles/Home.module.css'
-import { getListApi, PostList } from './api/CallApis'
+import { getAllInfo, getListApi, PostList } from './api/CallApis'
 import PostListComp from './Post'
 import Post from './Post'
 import { Update } from './Update'
@@ -12,43 +12,25 @@ export default  function GetList() {
 
   
   const [getList, setGetList] = useState([]);
-  useEffect(()=>{
-    // axios.get(urlGetList,{
-    //   auth: {
-    //       username: 'Comex',
-    //       password: 'Comex2017'
+    
+ 
+  const getAll = () => {
+    getAllInfo().then( async(getAll) => {
+      // console.log('respGetList',resp);
+      setGetList(getAll);
+    });
+  };
+    //   const getAll = () =>{
+    //     getListApi().then(async(getLists) => {
+    //       setGetList(getLists);
+    //     })
     //   }
-    // }).then(res => {
-    //   setGetList(res.data)
-    // })
-    getAll()
-  },[]);   
-  const urlGetList = 'https://servicios.devaxxess.com.mx/Comex.TI.PortalCliente.WebApi/api/test/get-list';
-//    const getAll = async()=>{
-//     const resp = await axios.get(urlGetList,{
-//         auth:{
-//             username: 'Comex',
-//             password: 'Comex2017'
-//         },
-//     });
-//     setGetList(resp.data)
-// }
-    
-      // const getAll = useCallback( async ( ) => {
-      //   let response = await getListApi();
-        
-      //   setGetList(response);
-      // })
-    
+    // // const newMessage =  getListApi();
+    // console.log('newMessage',getList);
 
-      const getAll = () =>{
-        getListApi().then(async(getLists) => {
-          setGetList(getLists)
-        })
-      }
-    // const newMessage =  getListApi();
-    console.log('newMessage',getList);
-
+    useEffect(()=>{
+      getAll()
+    },[]);
     
 
   return (
@@ -63,7 +45,7 @@ export default  function GetList() {
       <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Get Test</a>
         </h1>
-          {getList?.map((list) => (
+          {getList?.map((list,index) => (
             <div key={list?.Nombre} >{list.Nombre}</div>
           ))}
       
